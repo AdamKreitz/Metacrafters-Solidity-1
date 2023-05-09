@@ -25,8 +25,6 @@ Bernoulli.burn(100);
 
 ## Authors
 
-Contributors names and contact info
-
 Adam Kreitzman
 https://twitter.com/KreitzmanAdam
 
