@@ -27,11 +27,13 @@ contract createToken {
     
     address public owner;
     
+    // For certain functions, we only want the contract owner to be able to call it
     modifier onlyOwner() {
       require(msg.sender == owner, "Only the contract Owner can call this function");
       _;
     }
     
+    // constructor allows us to initiate a new token with the attributes we defined, while initially delegating the tokens to the creator
     constructor(string memory _name, string memory _symbol, uint32 _totalSupply {
       name = _name; 
       symbol = _symbol;
@@ -40,14 +42,14 @@ contract createToken {
       owner = msg.sender;
     }
 
-    // mint function
+    // mint function, which is set up to only be called by the contract owner
     function mint(address _to, uint32 _amount) external onlyOwner {
       totalSupply += _amount;
       balances[_to] += _amount;
     }
     
 
-    // burn function
+    // burn function, which is only allowed to be called by a token holder
     function burn(uint32 _amount) external {
       require(balances[msg.sender] >= _amount, "Insufficient Balance");
       totalSupply -= _amount;
