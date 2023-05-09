@@ -20,7 +20,7 @@ contract createToken {
     // public variables here
     string public name;
     string public symbol;
-    unit256 public totalSupply;
+    uint256 public totalSupply;
 
     // mapping variable here
     mapping(address => uint) public balances;
@@ -34,7 +34,7 @@ contract createToken {
     }
     
     // constructor allows us to initiate a new token with the attributes we defined, while initially delegating the tokens to the creator
-    constructor(string memory _name, string memory _symbol, uint32 _totalSupply {
+    constructor(string memory _name, string memory _symbol, uint256 _totalSupply {
       name = _name; 
       symbol = _symbol;
       totalSupply = _totalSupply;
@@ -43,14 +43,14 @@ contract createToken {
     }
 
     // mint function, which is set up to only be called by the contract owner
-    function mint(address _to, uint32 _amount) external onlyOwner {
+    function mint(address _to, uint256 _amount) external onlyOwner {
       totalSupply += _amount;
       balances[_to] += _amount;
     }
     
 
     // burn function, which is only allowed to be called by a token holder
-    function burn(uint32 _amount) external {
+    function burn(uint256 _amount) external {
       require(balances[msg.sender] >= _amount, "Insufficient Balance");
       totalSupply -= _amount;
       balances[msg.sender] -= _amount;
